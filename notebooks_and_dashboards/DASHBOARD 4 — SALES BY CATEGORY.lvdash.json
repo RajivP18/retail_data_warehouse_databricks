@@ -1,0 +1,126 @@
+{
+  "datasets": [
+    {
+      "name": "9424e411",
+      "displayName": "Sales by category",
+      "queryLines": [
+        "SELECT\r\n",
+        "    p.category,\r\n",
+        "    ROUND(SUM(f.sales), 2) AS revenue\r\n",
+        "FROM retail_gold.fact_sales f\r\n",
+        "JOIN retail_gold.dim_product p\r\n",
+        "ON f.product_id = p.product_id\r\n",
+        "GROUP BY p.category\r\n",
+        "ORDER BY revenue DESC;"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "5204b299",
+      "displayName": "Product Category Revenue Summary Report",
+      "layout": [
+        {
+          "widget": {
+            "name": "8f765e04",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "9424e411",
+                  "fields": [
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    },
+                    {
+                      "name": "revenue",
+                      "expression": "`revenue`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "revenue",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 1,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}

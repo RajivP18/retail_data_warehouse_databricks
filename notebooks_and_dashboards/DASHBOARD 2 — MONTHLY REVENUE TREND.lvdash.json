@@ -1,0 +1,95 @@
+{
+  "datasets": [
+    {
+      "name": "2d460c55",
+      "displayName": "Monthly Revenue",
+      "queryLines": [
+        "SELECT\r\n",
+        "    CONCAT(d.year, '-', LPAD(d.month, 2, '0')) AS year_month,\r\n",
+        "    ROUND(SUM(f.sales), 2) AS monthly_revenue\r\n",
+        "FROM retail_gold.fact_sales f\r\n",
+        "JOIN retail_gold.dim_date d\r\n",
+        "ON f.order_date = d.order_date\r\n",
+        "GROUP BY d.year, d.month\r\n",
+        "ORDER BY d.year, d.month;"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "4be6aa0c",
+      "displayName": "MONTHLY REVENUE",
+      "layout": [
+        {
+          "widget": {
+            "name": "mon",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "2d460c55",
+                  "fields": [
+                    {
+                      "name": "year_month",
+                      "expression": "`year_month`"
+                    },
+                    {
+                      "name": "sum(monthly_revenue)",
+                      "expression": "SUM(`monthly_revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "title": "MONTHLY REVENUE"
+              },
+              "mark": {
+                "marker": {
+                  "shape": "cross"
+                },
+                "size": -1.8
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "year_month",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(monthly_revenue)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": false
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 2,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
