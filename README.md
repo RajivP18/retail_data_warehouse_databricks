@@ -740,8 +740,7 @@ This project successfully demonstrates the implementation of a modern Retail Lak
 
 # Author
 
-Your Name
-
+Rajiv Pillalamarri
 ---
 
 # License
